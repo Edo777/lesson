@@ -5,8 +5,10 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
         return console.log(err)
     }
 
-    db.collection('Users').insert({
+    db.collection('Users').find({
         completed : false
+    }).count().then((count) => {
+        console.log(`count = ${count}`)
     })
 
     db.close()
