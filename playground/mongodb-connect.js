@@ -6,7 +6,10 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
     }
 
     db.collection('Users').insert({
-        completed : true
+        name : "Edgar",
+        surname : "Khachatryan",
+        age : 22,
+        email : "Edohajan@mail.ru"
     })
 
     db.close()

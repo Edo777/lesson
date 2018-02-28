@@ -6,8 +6,8 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
     }
     console.log("connected to MongoDB")
     
-    db.collection('Users').findOneAndDelete({
-        _id : new ObjectID("5a955b14a34e2619446b9d9e")
+    db.collection('Users').deleteMany({
+        completed : true
     }).then((res) => {
         console.log(res);
     }, (err) => {
