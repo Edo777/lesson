@@ -99,7 +99,15 @@ app.patch("/todos/:id", (req, res) => {
         })
 })
 
-
+app.post('/user', (req, res) => {
+    User.create(req.body)
+        .then((doc) => {
+            res.send(doc);
+        })
+        .catch((err) => {
+            res.send(err)
+        })
+})
 
 app.listen(3000, () => {
     console.log("Starting on port 3000");
