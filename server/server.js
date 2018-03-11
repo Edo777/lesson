@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const _ = require("lodash");
 const { ObjectID } = require("mongodb");
@@ -8,7 +9,7 @@ const { Todo } = require("./models/todo");
 var app = express();
 
 
-
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended : true
@@ -108,6 +109,29 @@ app.post('/user', (req, res) => {
             res.header("x-auth", token).send(us)
         })
     })
+})
+
+var authentificate = function(req, res, next){
+    var token = req.header('x-auth');
+    User.findByToken(token)
+        .then((user) => {
+            if(!user){
+               return Promise.reject({
+                   message : "not user"
+               })
+            }
+            req.user = user;
+            req.token = token;
+            next();
+        })
+        .catch((err) => {
+            res.status(401).send(err);
+        })
+}
+
+app.get('/user/me', authentificate, (req, res) => {
+    console.log(req.token);
+    res.send(req.user);
 })
 
 app.listen(3000, () => {

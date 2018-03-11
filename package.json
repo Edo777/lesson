@@ -14,10 +14,11 @@
     "expect": "^1.20.2",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.0",
-    "lodash": "^4.15.0",
+    "lodash": "^4.17.5",
     "mocha": "^3.0.2",
     "mongodb": "^2.2.33",
     "mongoose": "^5.0.9",
+    "morgan": "^1.9.0",
     "nodemon": "^1.17.1",
     "supertest": "^2.0.0",
     "validator": "^5.6.0"
